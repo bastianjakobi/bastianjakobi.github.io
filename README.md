@@ -1,7 +1,7 @@
 # Portfolio Website
 This repository contains the newest version of my personal portfolio website, which can be found [here](https://bastianjakobi.com).
 <br />
-The website is built using Vite, Preact, TailwindCSS and Firebase.
+The website is built using Vite, Preact and TailwindCSS.
 
 ## Available commands
 
