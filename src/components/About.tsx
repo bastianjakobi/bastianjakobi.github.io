@@ -32,7 +32,7 @@ function About() {
                             <Skill name="UI/UX Design" />
                         </div>
                         <a
-                            href="https://bastianjakobi.com/documents/lebenslauf.pdf"
+                            href="https://docs.bastianjakobi.com/lebenslauf.pdf"
                             target="_blank"
                             rel="noopener"
                             class="px-5 py-2 mr-4 rounded-md bg-customDarkBlue hover:bg-customDarkerBlue text-white font-body mt-4 i inline-block"
