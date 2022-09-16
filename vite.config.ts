@@ -8,6 +8,9 @@ export default defineConfig({
     preact(),
     VitePWA({
       registerType: "autoUpdate",
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,webp,svg}"],
+      },
       devOptions: {
         enabled: true,
       },
@@ -33,11 +36,13 @@ export default defineConfig({
             src: "/android-chrome-maskable-192x192.png",
             sizes: "192x192",
             type: "image/png",
+            purpose: "maskable",
           },
           {
             src: "/android-chrome-maskable-512x512.png",
             sizes: "512x512",
             type: "image/png",
+            purpose: "maskable",
           },
         ],
       },
