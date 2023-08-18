@@ -9,13 +9,13 @@ function About() {
                         <h2 class="font-heading text-3xl sm:text-4xl text-customDarkBlue mb-4">Über mich</h2>
                         <p>
                             <span class="font-extrabold text-customDarkBlue text-lg"
-                            >Ich bin Bastian, 22 Jahre alt und Fullstack-Softwareentwickler.</span
+                            >Ich bin Bastian, 23 Jahre alt und Fullstack-Softwareentwickler.</span
                             >
                             <br />
                             Dank meines erfolgreich abgeschlossenen Bachelorstudiums (B.Sc.) und meiner Spezialisierung auf Medieninformatik konnte ich mir bereits weitreichende Fähigkeiten in den Bereichen UI-/UX-Design,
                             Projektmanagement und vor allem Softwareentwicklung aneignen. Diese konnte ich während und nach meinem Studium im Rahmen diverser Projekte und Jobs erfolgreich einbringen und so
                             wertvolle praktische Erfahrungen sammeln. Mein Interesse galt dabei immer besonders der Gestaltung und Entwicklung hochqualitativer Webanwendungen.
-                            Aktuell arbeite ich als Softwareentwickler bei Capgemini und plane im Sommersemester 2023 mein Masterstudium zu beginnen.
+                            Aktuell arbeite ich als Softwareentwickler bei Capgemini und plane im Wintersemester 2023 mein Masterstudium zu beginnen.
                         </p>
                         <div className="mt-4">
                             <p class="font-heading text-customDarkBlue text-lg">Skills</p>
