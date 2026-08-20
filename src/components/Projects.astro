@@ -1,0 +1,90 @@
+---
+import { render } from 'astro:content';
+import { homeContent, type Locale } from '../content/home';
+import { getProjects } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const projects = await getProjects(locale);
+const renderedProjects = await Promise.all(
+  projects.map(async (project) => ({ project, Content: (await render(project)).Content })),
+);
+---
+
+<section
+  id={content.projectsId}
+  aria-labelledby={content.projectsTitleId}
+  class="scroll-mt-28 bg-ink text-cream"
+>
+  <div class="page-shell py-20 sm:py-28 lg:py-36">
+    <div>
+      <div>
+        <h2
+          id={content.projectsTitleId}
+          class="whitespace-nowrap font-heading text-[clamp(2.25rem,6vw,4.5rem)] leading-none tracking-[-0.06em] text-cream"
+        >
+          {content.projectsTitle}
+        </h2>
+      </div>
+    </div>
+
+    <div class="mt-14 divide-y divide-cream/15 border-y border-cream/15">
+      {
+        renderedProjects.length > 0 ? (
+          renderedProjects.map(({ project, Content }, index) => (
+          <article class="group grid gap-6 py-10 sm:py-14 lg:grid-cols-[7rem_1fr_auto] lg:items-center">
+            <span class="font-heading text-sm text-cream/45" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div class="max-w-2xl">
+              <h3 class="font-heading text-3xl leading-tight tracking-[-0.04em] sm:text-4xl">
+                {project.data.title}{' '}
+                {project.data.annotation && (
+                  <span class="text-lg text-cream/45 sm:text-xl">
+                    ({project.data.annotation})
+                  </span>
+                )}
+              </h3>
+              <div class="project-description mt-4 text-lg leading-relaxed text-cream/65 sm:text-xl">
+                <Content />
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-3 lg:justify-end">
+              {
+                project.data.projectUrl && (
+                  <a
+                    href={project.data.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    {content.viewProject} <span aria-hidden="true">↗</span>
+                  </a>
+                )
+              }
+              {
+                project.data.codeUrl && (
+                  <a
+                    href={project.data.codeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    {content.viewCode} <span aria-hidden="true">↗</span>
+                  </a>
+                )
+              }
+            </div>
+          </article>
+          ))
+        ) : (
+          <p class="py-14 text-lg text-cream/65 sm:text-xl">{content.projectsEmpty}</p>
+        )
+      }
+    </div>
+  </div>
+</section>

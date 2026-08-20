@@ -1,0 +1,208 @@
+export type Locale = 'en' | 'de';
+
+export const common = {
+  name: 'Bastian Jakobi',
+  github: 'https://github.com/bastianjakobi',
+  linkedin: 'https://www.linkedin.com/in/bastian-jakobi-ba6792186/',
+  resume:
+    'https://bastianjakobi.notion.site/Lebenslauf-db301666a84541db9661822977fe9da2?source=copy_link',
+} as const;
+
+export const skillGroups = {
+  en: [
+    {
+      title: 'Frontend Development',
+      skills: ['HTML', 'CSS', 'TailwindCSS', 'TypeScript', 'Angular', 'React', 'Microfrontends'],
+    },
+    {
+      title: 'Backend Development',
+      skills: ['Node.js', 'Java', 'SQL', 'NoSQL', 'Firebase/Supabase', 'Docker', 'Microservices'],
+    },
+    {
+      title: 'Generative AI',
+      skills: [
+        'Model Context Protocol (MCP)',
+        'Context Engineering',
+        'Agentic Coding',
+        'AI Automation',
+      ],
+    },
+    {
+      title: 'Other',
+      skills: ['Vite', 'Git', 'Storybook', 'CI/CD', 'Scrum', 'Kanban', 'Software Architecture'],
+    },
+    {
+      title: 'Soft Skills',
+      skills: ['Empathy', 'Team & Solution Orientation', 'Structured working style'],
+    },
+  ],
+  de: [
+    {
+      title: 'Frontend Entwicklung',
+      skills: ['HTML', 'CSS', 'TailwindCSS', 'TypeScript', 'Angular', 'React', 'Microfrontends'],
+    },
+    {
+      title: 'Backend Entwicklung',
+      skills: ['Node.js', 'Java', 'SQL', 'NoSQL', 'Firebase/Supabase', 'Docker', 'Microservices'],
+    },
+    {
+      title: 'Generative KI',
+      skills: [
+        'Model Context Protocol (MCP)',
+        'Context Engineering',
+        'Agentic Coding',
+        'KI Automatisierung',
+      ],
+    },
+    {
+      title: 'Sonstiges',
+      skills: ['Vite', 'Git', 'Storybook', 'CI/CD', 'Scrum', 'Kanban', 'Softwarearchitektur'],
+    },
+    {
+      title: 'Softskills',
+      skills: ['Empathie', 'Team- & Lösungsorientierung', 'Strukturierte Arbeitsweise'],
+    },
+  ],
+} as const satisfies Record<Locale, readonly { title: string; skills: readonly string[] }[]>;
+
+export const homeContent = {
+  en: {
+    htmlLang: 'en',
+    title: 'Bastian Jakobi – Solution Architect & Lead Software Engineer',
+    description:
+      'Bastian Jakobi is a Solution Architect and Lead Software Engineer specializing in web technologies and AI-enhanced software development.',
+    socialDescription:
+      'Bastian Jakobi is a Solution Architect and Lead Software Engineer specializing in web technologies and AI-enhanced software development.',
+    canonical: 'https://bastianjakobi.com/',
+    ogLocale: 'en_GB',
+    alternateOgLocale: 'de_DE',
+    jobTitle: 'Solution Architect and Lead Software Engineer',
+    mainId: 'content',
+    aboutId: 'about',
+    aboutTitleId: 'about-title',
+    projectsId: 'projects',
+    projectsTitleId: 'projects-title',
+    skip: 'Skip to content',
+    navLabel: 'Main navigation',
+    homeLabel: 'Bastian Jakobi – Home',
+    aboutNav: 'About',
+    projectsNav: 'Projects',
+    blogNav: 'Blog',
+    themeLabel: 'Toggle light and dark mode',
+    languageLabel: 'Language selection',
+    githubLabel: 'Bastian Jakobi on GitHub',
+    linkedinLabel: 'Bastian Jakobi on LinkedIn',
+    hero: 'Solution Architect and Lead Software Engineer focused on web technologies and AI-enhanced software development.',
+    aboutCta: 'About me',
+    projectsCta: 'View projects',
+    aboutTitle: 'About me.',
+    aboutLead:
+      'I’m a Solution Architect and Lead Software Engineer at Capgemini, focusing on web technologies and applying AI to increase quality, efficiency and developer experience across the entire software development lifecycle.',
+    aboutBody: [
+      'I’m passionate about architecting and building solutions that make people’s lives easier. Whether that means automating mundane processes with the help of AI to free up time for work that actually moves the needle, or creating software that’s intuitive and easy to use, I enjoy having ownership and working across the entire process, from the first solution sketch to the final, high-quality result.',
+      "I have 5+ years of professional experience and a master's in Computer Science and Media. Along the way, I’ve built full-stack web applications and complex microfrontend architectures with technologies such as TypeScript, React, Angular, Node.js, Java, PostgreSQL and Docker. More recently I’ve focused on applied AI by building skills, custom agents, MCP servers and architecting multi-agent systems with the goal of enhancing software development workflows using tools such as Claude Code.",
+      'Beyond implementation, I have gradually taken on responsibilities in software architecture and technical leadership by contributing to the planning and architecture of new features and solutions, coordinating their implementation, and providing technical guidance to an international team of developers.',
+    ],
+    aboutContact: {
+      prefix:
+        'If you want to exchange ideas on web technologies, software architecture and how AI is changing our industry, I’d love to connect via',
+      email: 'email',
+      conjunction: 'or',
+      linkedin: 'LinkedIn',
+      suffix: '!',
+    },
+    skillsTitle: 'Skills',
+    resumeLabel: 'View CV',
+    projectsTitle: 'Projects.',
+    projectsEmpty: 'More projects coming soon.',
+    viewProject: 'View project',
+    viewCode: 'View code',
+    blogId: 'blog',
+    blogTitleId: 'blog-title',
+    blogSectionTitle: 'From the blog.',
+    blogSectionIntro: 'Notes and thoughts on software development, software architecture, AI and technology.',
+    blogReadPost: 'Read post',
+    blogSeeAll: 'See all posts',
+    blogPageTitle: 'Blog – Bastian Jakobi',
+    blogPageDescription: 'A collection of notes and thoughts, by Bastian Jakobi, on software development, software architecture, AI and technology as a whole.',
+    blogPageHeading: 'Blog.',
+    blogPageSubtitle: 'A collection of notes and thoughts on software development, software architecture, AI and technology as a whole.',
+    blogEmpty: 'New posts are coming soon.',
+    blogBack: 'All posts',
+    emailHref: 'mailto:hello@bastianjakobi.com?subject=New%20contact%20request',
+    emailLabel: 'Email Bastian Jakobi',
+    legalLabel: 'Legal',
+    legalNotice: 'Legal Notice',
+    privacyPolicy: 'Privacy policy',
+  },
+  de: {
+    htmlLang: 'de',
+    title: 'Bastian Jakobi – Solution Architect & Lead Software Engineer',
+    description:
+      'Bastian Jakobi ist Solution Architect und Lead Software Engineer mit Schwerpunkt auf Webtechnologien und KI-gestützter Softwareentwicklung.',
+    socialDescription:
+      'Bastian Jakobi ist Solution Architect und Lead Software Engineer mit Schwerpunkt auf Webtechnologien und KI-gestützter Softwareentwicklung.',
+    canonical: 'https://bastianjakobi.com/de/',
+    ogLocale: 'de_DE',
+    alternateOgLocale: 'en_GB',
+    jobTitle: 'Solution Architect und Lead Software Engineer',
+    mainId: 'inhalt',
+    aboutId: 'ueber-mich',
+    aboutTitleId: 'ueber-mich-titel',
+    projectsId: 'projekte',
+    projectsTitleId: 'projekte-titel',
+    skip: 'Zum Inhalt springen',
+    navLabel: 'Hauptnavigation',
+    homeLabel: 'Bastian Jakobi – Startseite',
+    aboutNav: 'Über mich',
+    projectsNav: 'Projekte',
+    blogNav: 'Blog',
+    themeLabel: 'Zwischen hellem und dunklem Modus wechseln',
+    languageLabel: 'Sprachauswahl',
+    githubLabel: 'GitHub-Profil von Bastian Jakobi',
+    linkedinLabel: 'LinkedIn-Profil von Bastian Jakobi',
+    hero:
+      'Solution Architect und Lead Software Engineer mit Fokus auf Webtechnologien und KI-gestützte Softwareentwicklung.',
+    aboutCta: 'Über mich',
+    projectsCta: 'Projekte ansehen',
+    aboutTitle: 'Über mich.',
+    aboutLead:
+      'Ich bin Solution Architect und Lead Software Engineer bei Capgemini. Mein Fokus liegt auf Webtechnologien und dem Einsatz von KI, um Qualität, Effizienz und Developer Experience über den gesamten Softwareentwicklungszyklus hinweg zu verbessern.',
+    aboutBody: [
+      'Meine Leidenschaft ist es, Lösungen zu konzipieren und zu entwickeln, die das Leben von Menschen einfacher machen. Ob das bedeutet, monotone Prozesse mit KI zu automatisieren und so Zeit für Arbeit zu schaffen, die wirklich etwas bewegt, oder intuitive, einfach bedienbare Software zu bauen: Ich übernehme gerne Verantwortung und mag es, an dem gesamten Entwicklungsprozess, von der ersten Lösungsskizze bis zum finalen Ergebnis, mitwirken zu können.',
+      'Ich bringe mehr als 5 Jahre Berufserfahrung mit und habe parallel dazu einen Master in Computer Science and Media abgeschlossen. In dieser Zeit habe ich Fullstack-Webanwendungen und komplexe Microfrontend-Architekturen mit Technologien wie TypeScript, React, Angular, Node.js, Java, PostgreSQL und Docker entwickelt. Aktuell liegt mein Schwerpunkt auf angewandter KI in der Softwareentwicklung. Ich entwickle Skills, Custom Agents und MCP-Server, konzipiere Multi-Agenten-Systeme und verwende Tools wie Claude Code, um Arbeitsabläufe zu optimieren.',
+      'Über die Implementierung hinaus übernehme ich zunehmend mehr Verantwortung in den Bereichen Softwarearchitektur und Technical Leadership, indem ich an der Planung und Architektur neuer Features und Lösungen mitwirke, deren Umsetzung koordiniere und dabei ein internationales Team von Entwicklern technisch unterstütze.',
+    ],
+    aboutContact: {
+      prefix:
+        'Du willst dich über Webtechnologien, Softwarearchitektur oder darüber austauschen, wie KI unsere Branche verändert? Schreib mir gerne eine',
+      email: 'E-Mail',
+      conjunction: 'oder vernetze dich mit mir auf',
+      linkedin: 'LinkedIn',
+      suffix: '!',
+    },
+    skillsTitle: 'Kenntnisse',
+    resumeLabel: 'Lebenslauf ansehen',
+    projectsTitle: 'Projekte.',
+    projectsEmpty: 'Weitere Projekte folgen in Kürze.',
+    viewProject: 'Projekt ansehen',
+    viewCode: 'Code ansehen',
+    blogId: 'blog',
+    blogTitleId: 'blog-titel',
+    blogSectionTitle: 'Aus dem Blog.',
+    blogSectionIntro: 'Notizen und Gedanken zu den Themen Softwareentwicklung, Softwarearchitektur, KI und Technologie.',
+    blogReadPost: 'Beitrag lesen',
+    blogSeeAll: 'Alle Beiträge',
+    blogPageTitle: 'Blog – Bastian Jakobi',
+    blogPageDescription: 'Eine Sammlung von Notizen und Gedanken von Bastian Jakobi zu den Themen Softwareentwicklung, Softwarearchitektur, KI und Technologie im Allgemeinen.',
+    blogPageHeading: 'Blog.',
+    blogPageSubtitle: 'Eine Sammlung von Notizen und Gedanken zu den Themen Softwareentwicklung, Softwarearchitektur, KI und Technologie im Allgemeinen.',
+    blogEmpty: 'Neue Beiträge folgen in Kürze.',
+    blogBack: 'Alle Beiträge',
+    emailHref: 'mailto:hello@bastianjakobi.com?subject=Neue%20Kontaktanfrage',
+    emailLabel: 'E-Mail an Bastian Jakobi',
+    legalLabel: 'Rechtliches',
+    legalNotice: 'Impressum',
+    privacyPolicy: 'Datenschutzerklärung',
+  },
+} as const;

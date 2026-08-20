@@ -1,0 +1,18 @@
+---
+import impressumDocument from '../../content/impressum.html?raw';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const legalContent = impressumDocument.match(/<main class="legal-prose">([\s\S]*?)<\/main>/)?.[1];
+
+if (!legalContent) {
+  throw new Error('Could not extract the legal notice from src/content/impressum.html');
+}
+---
+
+<LegalLayout
+  lang="de"
+  title="Impressum – Bastian Jakobi"
+  canonical="https://bastianjakobi.com/docs/impressum.html"
+>
+  <Fragment set:html={legalContent} />
+</LegalLayout>

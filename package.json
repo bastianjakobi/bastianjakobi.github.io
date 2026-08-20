@@ -1,23 +1,25 @@
 {
-  "name": "preact-portfolio",
-  "private": true,
-  "version": "0.0.0",
+  "name": "bastian-jakobi-portfolio-astro",
   "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "build": "astro build && node scripts/preserve-routes.mjs",
+    "check": "astro check",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "preact": "^10.10.6"
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.6",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.3.0",
-    "autoprefixer": "^10.4.8",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8",
-    "typescript": "^4.6.4",
-    "vite": "^3.1.0",
-    "vite-plugin-pwa": "^0.12.7"
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }

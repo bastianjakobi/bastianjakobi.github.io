@@ -1,0 +1,53 @@
+---
+import BlogCard from './BlogCard.astro';
+import Footer from './Footer.astro';
+import Navigation from './Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeContent, type Locale } from '../content/home';
+import { getPublishedBlogPosts } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const posts = await getPublishedBlogPosts();
+const canonical = locale === 'de' ? 'https://bastianjakobi.com/de/blog/' : 'https://bastianjakobi.com/blog/';
+---
+
+<BaseLayout
+  lang={content.htmlLang}
+  title={content.blogPageTitle}
+  description={content.blogPageDescription}
+  canonical={canonical}
+>
+  <Navigation locale={locale} hasBlogPosts={posts.length > 0} page="blog" />
+  <main id={content.mainId} class="min-h-svh pt-[92px]">
+    <section class="page-shell py-20 sm:py-28 lg:py-36">
+      <div class="max-w-3xl">
+        <h1
+          class="font-heading text-[clamp(3rem,7vw,6rem)] leading-none tracking-[-0.06em] text-ink"
+        >
+          {content.blogPageHeading}
+        </h1>
+        <p class="mt-7 text-lg leading-relaxed text-ink/65 sm:text-xl">
+          {content.blogPageSubtitle}
+        </p>
+      </div>
+
+      {
+        posts.length > 0 ? (
+          <div class="mt-16 grid gap-x-10 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => <BlogCard post={post} locale={locale} />)}
+          </div>
+        ) : (
+          <p class="mt-16 border-y border-ink/15 py-12 text-lg text-ink/60 sm:text-xl">
+            {content.blogEmpty}
+          </p>
+        )
+      }
+    </section>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

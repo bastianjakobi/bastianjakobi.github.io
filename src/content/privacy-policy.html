@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f9fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#071821" media="(prefers-color-scheme: dark)" />
+    <title>Privacy Policy – Bastian Jakobi</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://bastianjakobi.com/docs/privacy-policy.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const systemQuery = "(prefers-color-scheme: dark)";
+        let savedTheme = null;
+
+        try {
+          savedTheme = localStorage.getItem("theme");
+        } catch {}
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+          root.dataset.theme = savedTheme;
+        }
+
+        addEventListener("DOMContentLoaded", () => {
+          const toggle = document.querySelector(".theme-toggle");
+          if (!(toggle instanceof HTMLInputElement)) return;
+
+          const systemIsDark = () => matchMedia(systemQuery).matches;
+          const activeTheme = () => root.dataset.theme || (systemIsDark() ? "dark" : "light");
+
+          if (savedTheme) {
+            toggle.checked = (savedTheme === "dark") !== systemIsDark();
+          }
+
+          toggle.addEventListener("change", () => {
+            const theme = activeTheme() === "dark" ? "light" : "dark";
+            root.dataset.theme = theme;
+            toggle.checked = (theme === "dark") !== systemIsDark();
+
+            try {
+              localStorage.setItem("theme", theme);
+            } catch {}
+          });
+        });
+      })();
+    </script>
+    <link href="/src/style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-cream font-body text-ink antialiased">
+    <input
+      id="theme-toggle"
+      type="checkbox"
+      role="switch"
+      aria-label="Toggle light and dark mode"
+      class="theme-toggle sr-only"
+    />
+    <label
+      for="theme-toggle"
+      class="theme-toggle-button fixed right-5 top-5 z-10"
+      title="Toggle light and dark mode"
+    >
+      <span class="theme-toggle-sun" aria-hidden="true">☀</span>
+      <span class="theme-toggle-moon" aria-hidden="true">☾</span>
+    </label>
+    <main class="legal-prose">
+      <h1>Privacy Policy</h1>
+  <h2>1. Data protection at a glance</h2>
+  <h3>General information</h3>
+  <p>
+    The following information provides a simple overview of what happens to your personal data
+    when you visit this website. Personal data means any data by which you can be personally
+    identified. Detailed information on data protection can be found in the Privacy Policy set out
+    below.
+  </p>
+  <h3>Data collection on this website</h3>
+  <h4>Who is responsible for collecting data on this website?</h4>
+  <p>
+    Data processing on this website is carried out by the website operator. The operator's contact
+    details can be found in the section “Information about the controller” in this Privacy Policy.
+  </p>
+  <h4>How do we collect your data?</h4>
+  <p>
+    Some data is collected when you provide it to us. This may, for example, be data that you enter
+    in a contact form.
+  </p>
+  <p>
+    Other data is collected automatically by our IT systems, or after you have given your consent,
+    when you visit the website. This primarily comprises technical data (for example, your internet
+    browser, operating system or the time at which you access the page). This data is collected
+    automatically as soon as you enter this website.
+  </p>
+  <h4>What do we use your data for?</h4>
+  <p>
+    Some data is collected to ensure that the website is provided without errors. Other data may be
+    used to analyse your user behaviour. Where contracts can be entered into or initiated via the
+    website, transmitted data is also processed for contractual offers, orders or other enquiries.
+  </p>
+  <h4>What rights do you have regarding your data?</h4>
+  <p>
+    You have the right at any time and free of charge to obtain information about the source,
+    recipients and purpose of your stored personal data. You also have the right to request the
+    rectification or erasure of this data. If you have consented to data processing, you may
+    withdraw that consent at any time with effect for the future. You also have the right, under
+    certain circumstances, to request restriction of the processing of your personal data.
+    Furthermore, you have the right to lodge a complaint with the competent supervisory authority.
+  </p>
+  <p>
+    You may contact us at any time about this or any other questions relating to data protection.
+  </p>
+
+  <h2>2. Hosting</h2>
+  <p>We host the content of our website with the following provider:  GitHub Pages</p>
+  <h3>External hosting</h3>
+  <p>
+    This website is hosted externally. Personal data collected on this website is stored on the
+    servers of the hosting provider or providers. This may primarily include IP addresses, contact
+    enquiries, metadata and communications data, contract data, contact details, names, website
+    access data and other data generated through a website.
+  </p>
+  <p>
+    External hosting is used for the purpose of performing contracts with our prospective and
+    existing customers (Article 6(1)(b) GDPR) and in our legitimate interest in providing our
+    online services securely, quickly and efficiently through a professional provider (Article
+    6(1)(f) GDPR). Where consent has been requested, processing is carried out exclusively on the
+    basis of Article 6(1)(a) GDPR and section 25(1) of the German Telecommunications Digital
+    Services Data Protection Act (TDDDG), insofar as that consent covers the storing of cookies or
+    access to information on the user's terminal equipment (for example, device fingerprinting)
+    within the meaning of the TDDDG. Consent may be withdrawn at any time.
+  </p>
+  <p>
+    Our hosting provider or providers will process your data only to the extent necessary to
+    perform their contractual obligations and will follow our instructions regarding this data.
+  </p>
+  <p>We use the following hosting provider:</p>
+  <p>
+    GitHub, Inc.<br />
+    88 Colin P. Kelly Jr. Street<br />
+    San Francisco, CA 94107<br />
+    USA
+  </p>
+
+  <h2>3. General and mandatory information</h2>
+  <h3>Data protection</h3>
+  <p>
+    The operators of this website take the protection of your personal data very seriously. We
+    treat your personal data as confidential and in accordance with the applicable data protection
+    legislation and this Privacy Policy.
+  </p>
+  <p>
+    When you use this website, various items of personal data are collected. Personal data means
+    data by which you can be personally identified. This Privacy Policy explains what data we
+    collect, how we use it, and how and for what purpose this takes place.
+  </p>
+  <p>
+    Please note that data transmitted over the internet (for example, in email communications) may
+    be subject to security vulnerabilities. Complete protection of data against access by third
+    parties is not possible.
+  </p>
+  <h3>Information about the controller</h3>
+  <p>The controller responsible for data processing on this website is:</p>
+  <p>
+    Bastian Jakobi<br />
+    Am Dohlberg 5<br />
+    63654 Büdingen<br />
+    Germany
+  </p>
+  <p>
+    Telephone: 015754407486<br />
+    Email: hello@bastianjakobi.com
+  </p>
+  <p>
+    The controller is the natural or legal person who, alone or jointly with others, determines the
+    purposes and means of processing personal data (for example, names or email addresses).
+  </p>
+
+  <h3>Storage period</h3>
+  <p>
+    Unless a more specific storage period is stated in this Privacy Policy, your personal data will
+    remain with us until the purpose for processing no longer applies. If you submit a legitimate
+    request for erasure or withdraw your consent to data processing, your data will be erased unless
+    we have other legally permissible grounds for storing your personal data (for example, retention
+    periods under tax or commercial law). In the latter case, the data will be erased once those
+    grounds cease to apply.
+  </p>
+  <h3>General information on the legal bases for data processing on this website</h3>
+  <p>
+    If you have consented to data processing, we process your personal data on the basis of Article
+    6(1)(a) GDPR or Article 9(2)(a) GDPR where special categories of data within the meaning of
+    Article 9(1) GDPR are processed. If you have expressly consented to the transfer of personal
+    data to third countries, processing is also based on Article 49(1)(a) GDPR. If you have
+    consented to cookies being stored or to information on your terminal equipment being accessed
+    (for example, through device fingerprinting), processing is additionally based on section
+    25(1) TDDDG. Consent may be withdrawn at any time. If your data is required for the performance
+    of a contract or in order to take steps prior to entering into a contract, we process your data
+    on the basis of Article 6(1)(b) GDPR. We also process your data on the basis of Article 6(1)(c)
+    GDPR where this is necessary for compliance with a legal obligation. Processing may also be
+    based on our legitimate interests under Article 6(1)(f) GDPR. The applicable legal basis in
+    each individual case is explained in the following sections of this Privacy Policy.
+  </p>
+  <h3>Recipients of personal data</h3>
+  <p>
+    In the course of our business activities, we work with various external organisations. In some
+    cases, it is necessary to transfer personal data to these external organisations. We disclose
+    personal data to external organisations only where this is necessary for the performance of a
+    contract, where we are legally obliged to do so (for example, disclosure to tax authorities),
+    where we have a legitimate interest in the disclosure pursuant to Article 6(1)(f) GDPR, or
+    where another legal basis permits the disclosure. When using processors, we disclose our
+    customers' personal data only on the basis of a valid data processing agreement. In the event
+    of joint processing, a joint controller arrangement is entered into.
+  </p>
+  <h3>Withdrawal of your consent to data processing</h3>
+  <p>
+    Many data processing operations are possible only with your express consent. You may withdraw
+    consent you have already given at any time. The lawfulness of processing carried out before the
+    withdrawal remains unaffected.
+  </p>
+  <h3>Right to object to data collection in specific cases and to direct marketing (Article 21 GDPR)</h3>
+  <p>
+    WHERE DATA IS PROCESSED ON THE BASIS OF POINT (E) OR (F) OF ARTICLE 6(1) GDPR, YOU HAVE THE
+    RIGHT TO OBJECT AT ANY TIME, ON GROUNDS RELATING TO YOUR PARTICULAR SITUATION, TO THE PROCESSING
+    OF YOUR PERSONAL DATA; THIS ALSO APPLIES TO PROFILING BASED ON THOSE PROVISIONS. THE APPLICABLE
+    LEGAL BASIS FOR PROCESSING IS SET OUT IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL NO LONGER
+    PROCESS THE PERSONAL DATA CONCERNED UNLESS WE CAN DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR
+    THE PROCESSING WHICH OVERRIDE YOUR INTERESTS, RIGHTS AND FREEDOMS, OR THE PROCESSING IS FOR THE
+    ESTABLISHMENT, EXERCISE OR DEFENCE OF LEGAL CLAIMS (OBJECTION PURSUANT TO ARTICLE 21(1) GDPR).
+  </p>
+  <p>
+    WHERE YOUR PERSONAL DATA IS PROCESSED FOR DIRECT MARKETING PURPOSES, YOU HAVE THE RIGHT TO
+    OBJECT AT ANY TIME TO THE PROCESSING OF PERSONAL DATA CONCERNING YOU FOR SUCH MARKETING; THIS
+    ALSO APPLIES TO PROFILING TO THE EXTENT THAT IT IS RELATED TO SUCH DIRECT MARKETING. IF YOU
+    OBJECT, YOUR PERSONAL DATA WILL NO LONGER BE USED FOR DIRECT MARKETING PURPOSES (OBJECTION
+    PURSUANT TO ARTICLE 21(2) GDPR).
+  </p>
+  <h3>Right to lodge a complaint with the competent supervisory authority</h3>
+  <p>
+    In the event of an infringement of the GDPR, data subjects have the right to lodge a complaint
+    with a supervisory authority, in particular in the Member State of their habitual residence,
+    place of work or place of the alleged infringement. The right to lodge a complaint is without
+    prejudice to any other administrative or judicial remedy.
+  </p>
+  <h3>Right to data portability</h3>
+  <p>
+    You have the right to receive data that we process by automated means on the basis of your
+    consent or in performance of a contract, or to have it transmitted to a third party, in a
+    commonly used, machine-readable format. If you request the direct transmission of the data to
+    another controller, this will be done only where technically feasible.
+  </p>
+  <h3>Access, rectification and erasure</h3>
+  <p>
+    Within the scope of the applicable legal provisions, you have the right at any time and free of
+    charge to obtain access to your stored personal data, information about its source and
+    recipients and the purpose of the processing. Where applicable, you also have the right to the
+    rectification or erasure of that data. You may contact us at any time about this or any other
+    questions relating to personal data.
+  </p>
+  <h3>Right to restriction of processing</h3>
+  <p>
+    You have the right to request restriction of the processing of your personal data. You may
+    contact us at any time to exercise this right. The right to restriction of processing applies
+    in the following cases:
+  </p>
+  <ul>
+    <li>
+      If you contest the accuracy of personal data stored by us, we generally need time to verify
+      its accuracy. For the duration of the verification, you have the right to request restriction
+      of the processing of your personal data.
+    </li>
+    <li>
+      If the processing of your personal data was or is unlawful, you may request restriction of
+      data processing instead of erasure.
+    </li>
+    <li>
+      If we no longer need your personal data, but you require it for the establishment, exercise
+      or defence of legal claims, you have the right to request restriction of processing instead
+      of erasure.
+    </li>
+    <li>
+      If you have objected pursuant to Article 21(1) GDPR, your interests must be weighed against
+      ours. While it has not yet been determined whose interests prevail, you have the right to
+      request restriction of the processing of your personal data.
+    </li>
+  </ul>
+  <p>
+    If you have restricted the processing of your personal data, that data may, apart from being
+    stored, be processed only with your consent, for the establishment, exercise or defence of
+    legal claims, for the protection of the rights of another natural or legal person, or for
+    reasons of important public interest of the European Union or of a Member State.
+  </p>
+  <h3>SSL or TLS encryption</h3>
+  <p>
+    For security reasons and to protect the transmission of confidential content, such as orders or
+    enquiries that you send to us as the website operator, this website uses SSL or TLS encryption.
+    You can recognise an encrypted connection by the browser's address bar changing from “http://”
+    to “https://” and by the padlock icon in your browser bar.
+  </p>
+  <p>
+    When SSL or TLS encryption is enabled, the data you transmit to us cannot be read by third
+    parties.
+  </p>
+
+  <h2>4. Data collection on this website</h2>
+  <h3>Cookies</h3>
+  <p>
+    Our website uses cookies. Cookies are small data packets and do not cause any damage to your
+    terminal equipment. They are stored either temporarily for the duration of a session (session
+    cookies) or permanently (persistent cookies) on your terminal equipment. Session cookies are
+    automatically deleted at the end of your visit. Persistent cookies remain stored on your
+    terminal equipment until you delete them yourself or they are automatically deleted by your
+    web browser.
+  </p>
+  <p>
+    Cookies may originate from us (first-party cookies) or from third-party companies (third-party
+    cookies). Third-party cookies make it possible to integrate certain services provided by
+    third-party companies into websites (for example, cookies used to process payment services).
+  </p>
+  <p>
+    Cookies have various functions. Many cookies are technically necessary because certain website
+    functions would not work without them (for example, the shopping basket or video display
+    functions). Other cookies may be used to analyse user behaviour or for advertising purposes.
+  </p>
+  <p>
+    Cookies that are necessary for carrying out electronic communications, providing certain
+    functions you have requested (for example, the shopping basket function), or optimising the
+    website (for example, cookies measuring the website audience) are stored on the basis of
+    Article 6(1)(f) GDPR unless another legal basis is specified. The website operator has a
+    legitimate interest in storing necessary cookies to provide its services in a technically
+    error-free and optimised manner. Where consent to the storing of cookies and comparable
+    recognition technologies has been requested, processing is carried out exclusively on the
+    basis of that consent (Article 6(1)(a) GDPR and section 25(1) TDDDG); consent may be withdrawn
+    at any time.
+  </p>
+  <p>
+    You can configure your browser to notify you when cookies are set and to allow cookies only in
+    individual cases, exclude the acceptance of cookies in specific cases or in general, and
+    activate the automatic deletion of cookies when the browser is closed. Disabling cookies may
+    limit the functionality of this website.
+  </p>
+  <p>
+    If additional cookies or services are used on this website, they are described in this Privacy
+    Policy.
+  </p>
+  <h3>Server log files</h3>
+  <p>
+    The website provider automatically collects and stores information in server log files, which
+    your browser automatically transmits to us. This information comprises:
+  </p>
+  <ul>
+    <li>browser type and browser version;</li>
+    <li>operating system used;</li>
+    <li>referrer URL;</li>
+    <li>host name of the accessing computer;</li>
+    <li>time of the server request; and</li>
+    <li>IP address.</li>
+  </ul>
+  <p>This data is not combined with data from other sources.</p>
+  <p>
+    This data is collected on the basis of Article 6(1)(f) GDPR. The website operator has a
+    legitimate interest in the technically error-free presentation and optimisation of its website;
+    server log files must be collected for this purpose.
+  </p>
+  <h3>Enquiries by email, telephone or fax</h3>
+  <p>
+    If you contact us by email, telephone or fax, your enquiry, including all personal data arising
+    from it (name and enquiry), will be stored and processed by us for the purpose of handling your
+    request. We do not disclose this data without your consent.
+  </p>
+  <p>
+    This data is processed on the basis of Article 6(1)(b) GDPR if your enquiry relates to the
+    performance of a contract or is necessary in order to take steps prior to entering into a
+    contract. In all other cases, processing is based on our legitimate interest in handling
+    enquiries addressed to us effectively (Article 6(1)(f) GDPR) or on your consent (Article
+    6(1)(a) GDPR), where this has been requested; consent may be withdrawn at any time.
+  </p>
+  <p>
+    Data you send to us in a contact enquiry remains with us until you request its erasure, withdraw
+    your consent to its storage, or the purpose for storing the data ceases to apply (for example,
+    once your request has been fully handled). Mandatory statutory provisions, in particular
+    statutory retention periods, remain unaffected.
+  </p>
+  <p class="seal">
+    This English translation is based on the
+    <a href="/docs/dsgvo.html" lang="de">German version of the Privacy Policy</a>, which cites
+    <a href="https://www.e-recht24.de">eRecht24</a> as its source. In the event of any discrepancy,
+    the German version shall prevail.
+  </p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { homeContent, type Locale } from '../content/home';
+import { getBlogPostPath } from '../lib/content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  locale: Locale;
+}
+
+const { post, locale } = Astro.props;
+const content = homeContent[locale];
+const formattedDate = new Intl.DateTimeFormat(locale, {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+}).format(post.data.pubDate);
+---
+
+<article class="flex h-full flex-col border-t border-ink/15 pt-6">
+  <time datetime={post.data.pubDate.toISOString()} class="text-sm text-ink/50">
+    {formattedDate}
+  </time>
+  <h2 class="mt-4 font-heading text-2xl tracking-[-0.04em] text-ink">
+    <a
+      href={getBlogPostPath(post)}
+      class="transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+    >
+      {post.data.title}
+    </a>
+  </h2>
+  <p class="mt-4 grow leading-relaxed text-ink/65">{post.data.description}</p>
+  <a
+    href={getBlogPostPath(post)}
+    class="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-ink/25 px-5 py-3 font-heading text-sm text-ink transition-colors hover:border-ink hover:bg-ink hover:text-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+  >
+    {content.blogReadPost} <span aria-hidden="true">→</span>
+  </a>
+</article>

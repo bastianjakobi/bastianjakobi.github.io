@@ -1,0 +1,48 @@
+---
+import About from './About.astro';
+import BlogPreview from './BlogPreview.astro';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import Projects from './Projects.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { common, homeContent, skillGroups, type Locale } from '../content/home';
+import { getPublishedBlogPosts } from '../lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const blogPosts = await getPublishedBlogPosts();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: common.name,
+  url: 'https://bastianjakobi.com/',
+  jobTitle: content.jobTitle,
+  email: 'mailto:hello@bastianjakobi.com',
+  sameAs: [common.github, common.linkedin],
+  knowsAbout: skillGroups[locale].flatMap((group) => group.skills),
+};
+---
+
+<BaseLayout
+  lang={content.htmlLang}
+  title={content.title}
+  description={content.description}
+  socialDescription={content.socialDescription}
+  canonical={content.canonical}
+  ogLocale={content.ogLocale}
+  alternateOgLocale={content.alternateOgLocale}
+  structuredData={structuredData}
+  home
+>
+  <Header locale={locale} hasBlogPosts={blogPosts.length > 0} />
+  <main id={content.mainId}>
+    <About locale={locale} />
+    <Projects locale={locale} />
+    <BlogPreview posts={blogPosts} locale={locale} />
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  lang: 'en' | 'de';
+  title: string;
+  canonical: string;
+}
+
+const { lang, title, canonical } = Astro.props;
+const themeLabel =
+  lang === 'de'
+    ? 'Zwischen hellem und dunklem Modus wechseln'
+    : 'Toggle light and dark mode';
+---
+
+<BaseLayout lang={lang} title={title} canonical={canonical}>
+  <ThemeToggle label={themeLabel} fixed />
+  <main class="legal-prose">
+    <slot />
+  </main>
+</BaseLayout>

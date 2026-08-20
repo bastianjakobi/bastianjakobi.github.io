@@ -1,0 +1,61 @@
+---
+import Navigation from './Navigation.astro';
+import { common, homeContent, type Locale } from '../content/home';
+
+interface Props {
+  locale: Locale;
+  hasBlogPosts?: boolean;
+}
+
+const { locale, hasBlogPosts = false } = Astro.props;
+const content = homeContent[locale];
+---
+
+<a
+  href={`#${content.mainId}`}
+  class="sr-only z-50 rounded-full bg-coral px-5 py-3 font-heading text-sm text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+>
+  {content.skip}
+</a>
+
+<header id="top" class="relative isolate min-h-svh overflow-hidden bg-cream text-ink">
+  <img
+    src="/hero-bg-2400.webp"
+    alt=""
+    width="2400"
+    height="1800"
+    fetchpriority="high"
+    decoding="async"
+    class="theme-hero pointer-events-none absolute inset-0 -z-20 size-full object-cover object-center opacity-70"
+  />
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-cream/35" aria-hidden="true"></div>
+
+  <Navigation locale={locale} hasBlogPosts={hasBlogPosts} />
+
+  <div class="page-shell flex min-h-svh items-center pt-[92px]">
+    <div class="grid max-w-5xl gap-8">
+      <h1
+        class="whitespace-nowrap font-heading text-[clamp(2.5rem,6.75vw,5.75rem)] leading-none tracking-[-0.07em] text-ink"
+      >
+        {common.name}
+      </h1>
+      <p class="max-w-2xl text-base leading-relaxed text-ink/70 sm:text-lg lg:text-xl">
+        {content.hero}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`#${content.aboutId}`}
+          class="rounded-full bg-ink px-6 py-3.5 font-heading text-sm text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue motion-reduce:transform-none"
+        >
+          {content.aboutCta}
+        </a>
+        <a
+          href={`#${content.projectsId}`}
+          class="rounded-full border border-ink/30 bg-cream/30 px-6 py-3.5 font-heading text-sm text-ink transition-colors hover:border-ink hover:bg-cream/70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+        >
+          {content.projectsCta}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,60 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Footer from './Footer.astro';
+import Navigation from './Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeContent, type Locale } from '../content/home';
+import { getBlogPostPath } from '../lib/content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const locale: Locale = post.data.lang;
+const content = homeContent[locale];
+const { Content } = await render(post);
+const formattedDate = new Intl.DateTimeFormat(locale, {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+}).format(post.data.pubDate);
+const blogPath = locale === 'de' ? '/de/blog/' : '/blog/';
+const canonical = new URL(getBlogPostPath(post), 'https://bastianjakobi.com').href;
+---
+
+<BaseLayout
+  lang={locale}
+  title={`${post.data.title} – Bastian Jakobi`}
+  description={post.data.description}
+  canonical={canonical}
+>
+  <Navigation locale={locale} hasBlogPosts page="post" />
+  <main id={content.mainId} class="min-h-svh pt-[92px]">
+    <article class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+      <a
+        href={blogPath}
+        class="inline-flex items-center gap-2 rounded-full border border-ink/20 px-4 py-2 text-sm text-ink transition-colors hover:border-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+      >
+        <span aria-hidden="true">←</span> {content.blogBack}
+      </a>
+      <header class="mt-12 border-b border-ink/15 pb-12">
+        <time datetime={post.data.pubDate.toISOString()} class="text-sm text-ink/50">
+          {formattedDate}
+        </time>
+        <h1
+          class="mt-5 font-heading text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] tracking-[-0.06em] text-ink"
+        >
+          {post.data.title}
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink/65 sm:text-xl">
+          {post.data.description}
+        </p>
+      </header>
+      <div class="markdown-prose pt-12">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

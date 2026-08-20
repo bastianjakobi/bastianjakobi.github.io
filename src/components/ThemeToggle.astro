@@ -1,0 +1,33 @@
+---
+interface Props {
+  label: string;
+  fixed?: boolean;
+}
+
+const { label, fixed = false } = Astro.props;
+---
+
+<input
+  id="theme-toggle"
+  type="checkbox"
+  role="switch"
+  aria-label={label}
+  class="theme-toggle sr-only"
+/>
+<label
+  for="theme-toggle"
+  class:list={["theme-toggle-button", { "fixed right-5 top-5 z-10": fixed }]}
+  title={label}
+>
+  <span class="theme-toggle-sun" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="3.5"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+    </svg>
+  </span>
+  <span class="theme-toggle-moon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"></path>
+    </svg>
+  </span>
+</label>

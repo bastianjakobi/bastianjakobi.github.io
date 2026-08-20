@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+import { homeContent, type Locale } from '../content/home';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const content = homeContent[locale];
+const blogPath = locale === 'de' ? '/de/blog/' : '/blog/';
+---
+
+{
+  posts.length > 0 && (
+    <section id={content.blogId} aria-labelledby={content.blogTitleId} class="scroll-mt-28 bg-cream">
+      <div class="page-shell py-20 sm:py-28 lg:py-36">
+        <div class="max-w-3xl">
+          <h2
+            id={content.blogTitleId}
+            class="font-heading text-[clamp(3rem,6vw,4.5rem)] leading-none tracking-[-0.06em] text-ink"
+          >
+            {content.blogSectionTitle}
+          </h2>
+          <p class="mt-6 text-lg leading-relaxed text-ink/65 sm:text-xl">
+            {content.blogSectionIntro}
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-10 md:grid-cols-3">
+          {posts.slice(0, 3).map((post) => <BlogCard post={post} locale={locale} />)}
+        </div>
+
+        <a
+          href={blogPath}
+          class="mt-12 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 font-heading text-sm text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue motion-reduce:transform-none"
+        >
+          {content.blogSeeAll} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  )
+}

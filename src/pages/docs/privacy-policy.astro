@@ -1,0 +1,18 @@
+---
+import privacyPolicyDocument from '../../content/privacy-policy.html?raw';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const legalContent = privacyPolicyDocument.match(/<main class="legal-prose">([\s\S]*?)<\/main>/)?.[1];
+
+if (!legalContent) {
+  throw new Error('Could not extract the privacy policy from src/content/privacy-policy.html');
+}
+---
+
+<LegalLayout
+  lang="en"
+  title="Privacy Policy – Bastian Jakobi"
+  canonical="https://bastianjakobi.com/docs/privacy-policy.html"
+>
+  <Fragment set:html={legalContent} />
+</LegalLayout>

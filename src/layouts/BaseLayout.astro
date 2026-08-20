@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  lang: string;
+  title: string;
+  canonical: string;
+  description?: string;
+  socialDescription?: string;
+  ogLocale?: string;
+  alternateOgLocale?: string;
+  structuredData?: Record<string, unknown>;
+  home?: boolean;
+}
+
+const {
+  lang,
+  title,
+  canonical,
+  description,
+  socialDescription,
+  ogLocale,
+  alternateOgLocale,
+  structuredData,
+  home = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {home && <meta name="author" content="Bastian Jakobi" />}
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f9fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#071821" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={canonical} />
+    {
+      home && (
+        <>
+          <link rel="alternate" hreflang="de" href="https://bastianjakobi.com/de/" />
+          <link rel="alternate" hreflang="en" href="https://bastianjakobi.com/" />
+          <link rel="alternate" hreflang="x-default" href="https://bastianjakobi.com/" />
+        </>
+      )
+    }
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    {
+      home && (
+        <>
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link
+            rel="preload"
+            href="/hero-bg-2400.webp"
+            as="image"
+            type="image/webp"
+            fetchpriority="high"
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:locale" content={ogLocale} />
+          <meta property="og:locale:alternate" content={alternateOgLocale} />
+          <meta property="og:site_name" content="Bastian Jakobi" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={socialDescription} />
+          <meta property="og:url" content={canonical} />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={socialDescription} />
+        </>
+      )
+    }
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const systemQuery = "(prefers-color-scheme: dark)";
+        let savedTheme = null;
+
+        try {
+          savedTheme = localStorage.getItem("theme");
+        } catch {}
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+          root.dataset.theme = savedTheme;
+        }
+
+        addEventListener("DOMContentLoaded", () => {
+          const toggle = document.querySelector(".theme-toggle");
+          if (!(toggle instanceof HTMLInputElement)) return;
+
+          const systemIsDark = () => matchMedia(systemQuery).matches;
+          const activeTheme = () =>
+            root.dataset.theme || (systemIsDark() ? "dark" : "light");
+
+          if (savedTheme) {
+            toggle.checked = (savedTheme === "dark") !== systemIsDark();
+          }
+
+          toggle.addEventListener("change", () => {
+            const theme = activeTheme() === "dark" ? "light" : "dark";
+            root.dataset.theme = theme;
+            toggle.checked = (theme === "dark") !== systemIsDark();
+
+            try {
+              localStorage.setItem("theme", theme);
+            } catch {}
+          });
+        });
+      })();
+    </script>
+    {
+      structuredData && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
+  </head>
+  <body class="bg-cream font-body text-ink antialiased">
+    <slot />
+  </body>
+</html>

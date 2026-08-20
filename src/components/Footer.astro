@@ -1,0 +1,81 @@
+---
+import { common, homeContent, type Locale } from '../content/home';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const fallbackYear = new Date().getFullYear();
+const legalNoticePath =
+  locale === 'de' ? '/docs/impressum.html' : '/docs/legal-notice.html';
+const privacyPolicyPath =
+  locale === 'de' ? '/docs/dsgvo.html' : '/docs/privacy-policy.html';
+---
+
+<footer class="border-t border-ink/10 bg-cream text-ink">
+  <div
+    class="page-shell grid gap-10 py-14 lg:grid-cols-[1fr_auto] lg:items-end"
+  >
+    <div>
+      <p class="font-heading text-2xl tracking-[-0.04em]">
+        &copy; Bastian Jakobi{' '}
+        <time datetime={String(fallbackYear)} data-current-year>{fallbackYear}</time>.
+      </p>
+      <div class="mt-6 flex gap-3">
+        <a
+          href={common.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={content.githubLabel}
+          class="footer-icon"
+        >
+          <img class="theme-icon" src="/icons/github-dark.svg" width="22" height="22" alt="" />
+        </a>
+        <a
+          href={common.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={content.linkedinLabel}
+          class="footer-icon"
+        >
+          <img class="theme-icon" src="/icons/linkedin-dark.svg" width="20" height="23" alt="" />
+        </a>
+        <a href={content.emailHref} aria-label={content.emailLabel} class="footer-icon">
+          <img class="theme-icon" src="/icons/mail.svg" width="22" height="22" alt="" />
+        </a>
+      </div>
+    </div>
+    <nav
+      aria-label={content.legalLabel}
+      class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink/65"
+    >
+      <a
+        href={legalNoticePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline decoration-ink/25 underline-offset-4 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+      >
+        {content.legalNotice}
+      </a>
+      <a
+        href={privacyPolicyPath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline decoration-ink/25 underline-offset-4 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+      >
+        {content.privacyPolicy}
+      </a>
+    </nav>
+  </div>
+</footer>
+
+<script is:inline>
+  const currentYear = String(new Date().getFullYear());
+
+  document.querySelectorAll('[data-current-year]').forEach((year) => {
+    year.textContent = currentYear;
+    year.setAttribute('datetime', currentYear);
+  });
+</script>

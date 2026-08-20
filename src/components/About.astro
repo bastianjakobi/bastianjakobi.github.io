@@ -1,0 +1,84 @@
+---
+import { common, homeContent, skillGroups, type Locale } from '../content/home';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const groups = skillGroups[locale];
+---
+
+<section id={content.aboutId} aria-labelledby={content.aboutTitleId} class="scroll-mt-28">
+  <div class="page-shell py-20 sm:py-28 lg:py-36">
+    <h2
+      id={content.aboutTitleId}
+      class="whitespace-nowrap font-heading text-[clamp(2.25rem,6vw,4.5rem)] leading-none tracking-[-0.06em] text-ink"
+    >
+      {content.aboutTitle}
+    </h2>
+
+    <div class="mt-8 max-w-5xl sm:mt-10">
+      <p class="font-heading text-sm leading-[1.85] text-ink">
+        {content.aboutLead}
+      </p>
+      <div class="mt-8 space-y-6 text-sm leading-[1.85] text-ink/75">
+        {content.aboutBody.map((paragraph) => <p>{paragraph}</p>)}
+        {
+          content.aboutContact && (
+            <p>
+              {content.aboutContact.prefix}{' '}
+              <a
+                href={content.emailHref}
+                class="font-medium text-ink underline decoration-coral decoration-2 underline-offset-4 transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+              >
+                {content.aboutContact.email}
+              </a>{' '}
+              {content.aboutContact.conjunction}{' '}
+              <a
+                href={common.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium text-ink underline decoration-coral decoration-2 underline-offset-4 transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+              >
+                {content.aboutContact.linkedin}
+              </a>
+              {content.aboutContact.suffix}
+            </p>
+          )
+        }
+      </div>
+
+      <div class="mt-12 border-t border-ink/15 pt-8">
+        <h3 class="font-heading text-xl tracking-[-0.03em] text-ink">{content.skillsTitle}</h3>
+        <div class="mt-6 grid gap-x-12 gap-y-8 md:grid-cols-2">
+          {
+            groups.map((group, index) => {
+              const headingId = `${content.aboutId}-skill-group-${index}`;
+
+              return (
+                <section aria-labelledby={headingId}>
+                  <h4 id={headingId} class="font-heading text-sm tracking-wide text-blue">
+                    {group.title}
+                  </h4>
+                  <ul class="mt-3 flex flex-wrap gap-2.5">
+                    {group.skills.map((skill) => <li class="skill">{skill}</li>)}
+                  </ul>
+                </section>
+              );
+            })
+          }
+        </div>
+        <a
+          href={common.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 font-heading text-sm text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral motion-reduce:transform-none"
+        >
+          {content.resumeLabel} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

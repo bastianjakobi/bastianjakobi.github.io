@@ -1,0 +1,114 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { common, homeContent, type Locale } from '../content/home';
+
+interface Props {
+  locale: Locale;
+  hasBlogPosts?: boolean;
+  page?: 'home' | 'blog' | 'post';
+}
+
+const { locale, hasBlogPosts = false, page = 'home' } = Astro.props;
+const content = homeContent[locale];
+const isGerman = locale === 'de';
+const homePath = isGerman ? '/de/' : '/';
+const blogPath = isGerman ? '/de/blog/' : '/blog/';
+const englishLanguagePath = page === 'home' ? '/' : '/blog/';
+const germanLanguagePath = page === 'home' ? '/de/' : '/de/blog/';
+const aboutHref = page === 'home' ? `#${content.aboutId}` : `${homePath}#${content.aboutId}`;
+const projectsHref =
+  page === 'home' ? `#${content.projectsId}` : `${homePath}#${content.projectsId}`;
+---
+
+<nav
+  aria-label={content.navLabel}
+  class="page-shell fixed inset-x-0 top-0 z-50 isolate flex items-center justify-between py-6 before:fixed before:inset-x-0 before:top-0 before:-z-10 before:h-[92px] before:border-b before:border-ink/10 before:bg-cream/90 before:backdrop-blur-xl"
+>
+  <a
+    href={page === 'home' ? '#top' : homePath}
+    aria-label={content.homeLabel}
+    class="font-heading text-lg tracking-[-0.04em] text-ink transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+  >
+    BJ.
+  </a>
+  <div class="flex items-center gap-1 sm:gap-3">
+    <a
+      href={aboutHref}
+      class="hidden rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:block"
+    >
+      {content.aboutNav}
+    </a>
+    <a
+      href={projectsHref}
+      class="hidden rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:block"
+    >
+      {content.projectsNav}
+    </a>
+    {
+      hasBlogPosts && (
+        <a
+          href={blogPath}
+          aria-current={page === 'blog' ? 'page' : undefined}
+          class="hidden rounded-full px-4 py-2 text-base font-medium text-ink/70 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue sm:block"
+        >
+          {content.blogNav}
+        </a>
+      )
+    }
+    <div
+      aria-label={content.languageLabel}
+      class="flex items-center rounded-full border border-ink/20 bg-cream/40 p-1 font-heading text-xs transition-colors hover:border-ink hover:bg-cream/80"
+    >
+      {
+        isGerman ? (
+          <>
+            <a
+              href={englishLanguagePath}
+              hreflang="en"
+              lang="en"
+              class="rounded-full px-2.5 py-1.5 text-ink/65 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blue"
+            >
+              EN
+            </a>
+            <span aria-current="page" class="rounded-full bg-ink px-2.5 py-1.5 text-cream">
+              DE
+            </span>
+          </>
+        ) : (
+          <>
+            <span aria-current="page" class="rounded-full bg-ink px-2.5 py-1.5 text-cream">
+              EN
+            </span>
+            <a
+              href={germanLanguagePath}
+              hreflang="de"
+              lang="de"
+              class="rounded-full px-2.5 py-1.5 text-ink/65 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blue"
+            >
+              DE
+            </a>
+          </>
+        )
+      }
+    </div>
+    <ThemeToggle label={content.themeLabel} />
+    <a
+      href={common.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={content.githubLabel}
+      class="grid size-11 place-items-center rounded-full border border-ink/20 bg-cream/40 transition-colors hover:border-ink hover:bg-cream/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+    >
+      <img class="theme-icon" src="/icons/github-dark.svg" width="22" height="22" alt="" />
+    </a>
+    <a
+      href={common.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={content.linkedinLabel}
+      class="grid size-11 place-items-center rounded-full border border-ink/20 bg-cream/40 transition-colors hover:border-ink hover:bg-cream/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+    >
+      <img class="theme-icon" src="/icons/linkedin-dark.svg" width="20" height="23" alt="" />
+    </a>
+  </div>
+</nav>

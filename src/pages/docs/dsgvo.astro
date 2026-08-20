@@ -1,0 +1,18 @@
+---
+import privacyDocument from '../../content/dsgvo.html?raw';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const legalContent = privacyDocument.match(/<main class="legal-prose">([\s\S]*?)<\/main>/)?.[1];
+
+if (!legalContent) {
+  throw new Error('Could not extract the privacy policy from src/content/dsgvo.html');
+}
+---
+
+<LegalLayout
+  lang="de"
+  title="Datenschutzerklärung – Bastian Jakobi"
+  canonical="https://bastianjakobi.com/docs/dsgvo.html"
+>
+  <Fragment set:html={legalContent} />
+</LegalLayout>

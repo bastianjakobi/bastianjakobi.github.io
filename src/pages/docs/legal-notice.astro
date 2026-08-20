@@ -1,0 +1,18 @@
+---
+import legalNoticeDocument from '../../content/legal-notice.html?raw';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const legalContent = legalNoticeDocument.match(/<main class="legal-prose">([\s\S]*?)<\/main>/)?.[1];
+
+if (!legalContent) {
+  throw new Error('Could not extract the legal notice from src/content/legal-notice.html');
+}
+---
+
+<LegalLayout
+  lang="en"
+  title="Legal Notice – Bastian Jakobi"
+  canonical="https://bastianjakobi.com/docs/legal-notice.html"
+>
+  <Fragment set:html={legalContent} />
+</LegalLayout>

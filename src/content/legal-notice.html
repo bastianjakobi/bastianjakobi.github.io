@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f9fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#071821" media="(prefers-color-scheme: dark)" />
+    <title>Legal Notice – Bastian Jakobi</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://bastianjakobi.com/docs/legal-notice.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const systemQuery = "(prefers-color-scheme: dark)";
+        let savedTheme = null;
+
+        try {
+          savedTheme = localStorage.getItem("theme");
+        } catch {}
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+          root.dataset.theme = savedTheme;
+        }
+
+        addEventListener("DOMContentLoaded", () => {
+          const toggle = document.querySelector(".theme-toggle");
+          if (!(toggle instanceof HTMLInputElement)) return;
+
+          const systemIsDark = () => matchMedia(systemQuery).matches;
+          const activeTheme = () => root.dataset.theme || (systemIsDark() ? "dark" : "light");
+
+          if (savedTheme) {
+            toggle.checked = (savedTheme === "dark") !== systemIsDark();
+          }
+
+          toggle.addEventListener("change", () => {
+            const theme = activeTheme() === "dark" ? "light" : "dark";
+            root.dataset.theme = theme;
+            toggle.checked = (theme === "dark") !== systemIsDark();
+
+            try {
+              localStorage.setItem("theme", theme);
+            } catch {}
+          });
+        });
+      })();
+    </script>
+    <link href="/src/style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-cream font-body text-ink antialiased">
+    <input
+      id="theme-toggle"
+      type="checkbox"
+      role="switch"
+      aria-label="Toggle light and dark mode"
+      class="theme-toggle sr-only"
+    />
+    <label
+      for="theme-toggle"
+      class="theme-toggle-button fixed right-5 top-5 z-10"
+      title="Toggle light and dark mode"
+    >
+      <span class="theme-toggle-sun" aria-hidden="true">☀</span>
+      <span class="theme-toggle-moon" aria-hidden="true">☾</span>
+    </label>
+    <main class="legal-prose">
+      <h1>Legal Notice</h1>
+  <h2 id="m46">Service provider</h2>
+  <p>Bastian Jakobi<br />Am Dohlberg 5<br />63654 Büdingen<br />Germany</p>
+
+  <h2 id="m56">Contact details</h2>
+  <p>Email address: <a href="mailto:hello@bastianjakobi.com">hello@bastianjakobi.com</a></p>
+  <p>Telephone: 015754407486</p>
+
+  <h2 id="m154">Journalistic and editorial content</h2>
+  <p>Person responsible for content: Bastian Jakobi</p>
+
+  <h2 id="m65">Liability and intellectual property notices</h2>
+  <p>
+    Disclaimer: The content of this website has been prepared with due care and based on our
+    current knowledge. It is provided for information purposes only and has no legally binding
+    effect unless it constitutes information that must be provided by law (such as this Legal
+    Notice, the Privacy Policy, terms and conditions, or mandatory consumer information). We
+    reserve the right to amend or delete content in whole or in part, provided that contractual
+    obligations remain unaffected. All offers are non-binding and subject to change.
+  </p>
+  <p>
+    Links to third-party websites: The content of third-party websites to which we refer directly
+    or indirectly lies outside our sphere of responsibility, and we do not adopt it as our own. We
+    accept no responsibility for any content or any disadvantages arising from the use of
+    information available on linked websites.
+  </p>
+  <p>
+    Copyright and trade mark rights: All content displayed on this website, including text,
+    photographs, graphics, brands and trade marks, is protected by the applicable intellectual
+    property rights (copyright and trade mark rights). Any use, reproduction or other exploitation
+    is subject to our rights or the rights of the respective authors or rights holders.
+  </p>
+  <p>
+    Notice of legal infringements: If you become aware of any legal infringement on our website,
+    please notify us. We will remove unlawful content and links without undue delay upon becoming
+    aware of them.
+  </p>
+
+  <p class="seal">
+    This English translation is based on the
+    <a href="/docs/impressum.html" lang="de">German version of the Legal Notice</a>, which was
+    created using the free
+    <a
+      href="https://datenschutz-generator.de/"
+      title="Datenschutz-Generator.de by Dr Thomas Schwenke"
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      >Datenschutz-Generator.de service by Dr Thomas Schwenke</a
+    >. In the event of any discrepancy, the German version shall prevail.
+  </p>
+    </main>
+  </body>
+</html>

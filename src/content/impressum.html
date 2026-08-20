@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f9fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#071821" media="(prefers-color-scheme: dark)" />
+    <title>Impressum – Bastian Jakobi</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://bastianjakobi.com/docs/impressum.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const systemQuery = "(prefers-color-scheme: dark)";
+        let savedTheme = null;
+
+        try {
+          savedTheme = localStorage.getItem("theme");
+        } catch {}
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+          root.dataset.theme = savedTheme;
+        }
+
+        addEventListener("DOMContentLoaded", () => {
+          const toggle = document.querySelector(".theme-toggle");
+          if (!(toggle instanceof HTMLInputElement)) return;
+
+          const systemIsDark = () => matchMedia(systemQuery).matches;
+          const activeTheme = () => root.dataset.theme || (systemIsDark() ? "dark" : "light");
+
+          if (savedTheme) {
+            toggle.checked = (savedTheme === "dark") !== systemIsDark();
+          }
+
+          toggle.addEventListener("change", () => {
+            const theme = activeTheme() === "dark" ? "light" : "dark";
+            root.dataset.theme = theme;
+            toggle.checked = (theme === "dark") !== systemIsDark();
+
+            try {
+              localStorage.setItem("theme", theme);
+            } catch {}
+          });
+        });
+      })();
+    </script>
+    <link href="/src/style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-cream font-body text-ink antialiased">
+    <input
+      id="theme-toggle"
+      type="checkbox"
+      role="switch"
+      aria-label="Zwischen hellem und dunklem Modus wechseln"
+      class="theme-toggle sr-only"
+    />
+    <label
+      for="theme-toggle"
+      class="theme-toggle-button fixed right-5 top-5 z-10"
+      title="Zwischen hellem und dunklem Modus wechseln"
+    >
+      <span class="theme-toggle-sun" aria-hidden="true">☀</span>
+      <span class="theme-toggle-moon" aria-hidden="true">☾</span>
+    </label>
+    <main class="legal-prose">
+      <h1>Impressum</h1>
+      <h2 id="m46">Diensteanbieter</h2>
+      <p>Bastian Jakobi<br />Am Dohlberg 5<br />63654 Büdingen<br />Deutschland</p>
+
+      <h2 id="m56">Kontaktmöglichkeiten</h2>
+      <p>E-Mail-Adresse: <a href="mailto:hello@bastianjakobi.com">hello@bastianjakobi.com</a></p>
+      <p>Telefon: 015754407486</p>
+
+      <h2 id="m154">Journalistisch-redaktionelle Angebote</h2>
+      <p>Inhaltlich verantwortlich: Bastian Jakobi</p>
+
+      <h2 id="m65">Haftungs- und Schutzrechtshinweise</h2>
+      <p>
+        Haftungsausschluss: Die Inhalte dieses Onlineangebotes wurden sorgfältig und nach unserem
+        aktuellen Kenntnisstand erstellt, dienen jedoch nur der Information und entfalten keine
+        rechtlich bindende Wirkung, sofern es sich nicht um gesetzlich verpflichtende Informationen
+        (z. B. das Impressum, die Datenschutzerklärung, AGB oder verpflichtende Belehrungen von
+        Verbrauchern) handelt. Wir behalten uns vor, die Inhalte vollständig oder teilweise zu
+        ändern oder zu löschen, soweit vertragliche Verpflichtungen unberührt bleiben. Alle Angebote
+        sind freibleibend und unverbindlich.
+      </p>
+      <p>
+        Links auf fremde Webseiten: Die Inhalte fremder Webseiten, auf die wir direkt oder indirekt
+        verweisen, liegen außerhalb unseres Verantwortungsbereiches und wir machen sie uns nicht zu
+        Eigen. Für alle Inhalte und Nachteile, die aus der Nutzung der in den verlinkten Webseiten
+        aufrufbaren Informationen entstehen, übernehmen wir keine Verantwortung.
+      </p>
+      <p>
+        Urheberrechte und Markenrechte: Alle auf dieser Website dargestellten Inhalte, wie Texte,
+        Fotografien, Grafiken, Marken und Warenzeichen sind durch die jeweiligen Schutzrechte
+        (Urheberrechte, Markenrechte) geschützt. Die Verwendung, Vervielfältigung usw. unterliegen
+        unseren Rechten oder den Rechten der jeweiligen Urheber bzw. Rechteinhaber.
+      </p>
+      <p>
+        Hinweise auf Rechtsverstöße: Sollten Sie innerhalb unseres Internetauftritts Rechtsverstöße
+        bemerken, bitten wir Sie uns auf diese hinzuweisen. Wir werden rechtswidrige Inhalte und
+        Links nach Kenntnisnahme unverzüglich entfernen.
+      </p>
+
+      <p class="seal">
+        <a
+          href="https://datenschutz-generator.de/"
+          title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke</a
+        >
+      </p>
+    </main>
+  </body>
+</html>
