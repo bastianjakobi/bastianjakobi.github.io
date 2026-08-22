@@ -4,8 +4,6 @@ export const common = {
   name: 'Bastian Jakobi',
   github: 'https://github.com/bastianjakobi',
   linkedin: 'https://www.linkedin.com/in/bastian-jakobi-ba6792186/',
-  resume:
-    'https://bastianjakobi.notion.site/Lebenslauf-db301666a84541db9661822977fe9da2?source=copy_link',
 } as const;
 
 export const skillGroups = {
@@ -113,6 +111,7 @@ export const homeContent = {
     },
     skillsTitle: 'Skills',
     resumeLabel: 'View CV',
+    resumeHref: 'https://bastianjakobi.notion.site/CV-3807b6fa26da803e95dccc7477989f8e?source=copy_link',
     projectsTitle: 'Projects.',
     projectsEmpty: 'More projects coming soon.',
     viewProject: 'View project',
@@ -183,6 +182,7 @@ export const homeContent = {
     },
     skillsTitle: 'Kenntnisse',
     resumeLabel: 'Lebenslauf ansehen',
+    resumeHref: 'https://bastianjakobi.notion.site/Lebenslauf-db301666a84541db9661822977fe9da2?source=copy_link',
     projectsTitle: 'Projekte.',
     projectsEmpty: 'Weitere Projekte folgen in Kürze.',
     viewProject: 'Projekt ansehen',
