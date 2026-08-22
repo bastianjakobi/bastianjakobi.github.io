@@ -59,6 +59,8 @@ async function writeSitemap() {
   const canonicalUrls = new Set();
 
   for (const htmlFile of htmlFiles) {
+    if (htmlFile === join(distDirectory, '404.html')) continue;
+
     const html = await readFile(htmlFile, 'utf8');
     const canonicalUrl = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
 

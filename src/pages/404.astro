@@ -1,0 +1,97 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="Page not found | Bastian Jakobi"
+  description="The page you were looking for could not be found."
+  robots="noindex, follow"
+>
+  <script is:inline>
+    if (location.pathname === '/de' || location.pathname.startsWith('/de/')) {
+      document.documentElement.lang = 'de';
+      document.documentElement.dataset.errorLocale = 'de';
+      document.title = 'Seite nicht gefunden | Bastian Jakobi';
+
+      const description = document.querySelector('meta[name="description"]');
+      description?.setAttribute('content', 'Die gesuchte Seite konnte nicht gefunden werden.');
+    }
+  </script>
+
+  <header>
+    <nav
+      aria-label="Error page navigation / Navigation der Fehlerseite"
+      class="page-shell fixed inset-x-0 top-0 z-50 isolate flex items-center justify-between py-6 before:fixed before:inset-x-0 before:top-0 before:-z-10 before:h-[92px] before:border-b before:border-ink/10 before:bg-cream/90 before:backdrop-blur-xl"
+    >
+      <a
+        data-error-copy="en"
+        href="/"
+        aria-label="Go to the home page"
+        class="font-heading text-lg tracking-[-0.04em] text-ink transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+      >
+        BJ.
+      </a>
+      <a
+        data-error-copy="de"
+        href="/de/"
+        aria-label="Zur Startseite"
+        class="font-heading text-lg tracking-[-0.04em] text-ink transition-colors hover:text-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue"
+      >
+        BJ.
+      </a>
+      <ThemeToggle label="Switch color theme / Farbschema wechseln" />
+    </nav>
+  </header>
+
+  <main class="page-shell flex min-h-svh items-center pt-[92px] text-ink">
+    <div data-error-copy="en" class="max-w-3xl">
+      <h1
+        class="font-heading text-[clamp(2.5rem,6.75vw,5.75rem)] leading-none tracking-[-0.07em] text-ink"
+      >
+        404
+      </h1>
+      <p class="mt-8 max-w-2xl text-base leading-relaxed text-ink/70 sm:text-lg lg:text-xl">
+        This page doesn’t exist.
+      </p>
+      <a
+        href="/"
+        class="mt-8 inline-flex rounded-full bg-ink px-6 py-3.5 font-heading text-sm text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue motion-reduce:transform-none"
+      >
+        Go home
+      </a>
+    </div>
+
+    <div data-error-copy="de" class="max-w-3xl" lang="de">
+      <h1
+        class="font-heading text-[clamp(2.5rem,6.75vw,5.75rem)] leading-none tracking-[-0.07em] text-ink"
+      >
+        404
+      </h1>
+      <p class="mt-8 max-w-2xl text-base leading-relaxed text-ink/70 sm:text-lg lg:text-xl">
+        Diese Seite existiert nicht.
+      </p>
+      <a
+        href="/de/"
+        class="mt-8 inline-flex rounded-full bg-ink px-6 py-3.5 font-heading text-sm text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue motion-reduce:transform-none"
+      >
+        Zur Startseite
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  [data-error-copy='de'] {
+    display: none;
+  }
+
+  html[data-error-locale='de'] [data-error-copy='en'] {
+    display: none;
+  }
+
+  html[data-error-locale='de'] [data-error-copy='de'] {
+    display: revert;
+  }
+</style>
